@@ -1,5 +1,5 @@
 '''
-Day 2
+Day 3
 
 Project: Two Sum test problem
 Description:
