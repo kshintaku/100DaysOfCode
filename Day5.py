@@ -74,7 +74,7 @@ def sort_colors(array):
   #     else:
   #       blue = idx
 
-  n = len(array)
+  # n = len(array)
 
   # Bubble sort
   # for i in range(n-1):
@@ -121,7 +121,7 @@ def quickSort(arr, low, high):
     # partition and after partition
     quickSort(arr, low, pi-1)
     quickSort(arr, pi+1, high)
-  return array
+  # return array
 
 print(sort_colors([2,0,2,1,1,0]), '[0,0,1,1,2,2]')
 print(sort_colors([2,0,1]), '[0,1,2]')

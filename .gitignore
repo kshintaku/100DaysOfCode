@@ -1,3 +1,7 @@
+.vscode/*
+# I put the venv in current directory
+bin/*
+pyvenv.cfg
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
