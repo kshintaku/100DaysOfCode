@@ -20,19 +20,36 @@ import PySimpleGUI as sg
 import os
 import time as t
 
-sg.theme('DarkAmber')
-pomodoro = 1
+sg.theme('DarkBrown4')
+pomodoro = 25
 sec = pomodoro * 60
 minn, secc = divmod(sec, 60)
 time_format = '{:02d}:{:02d}'.format(minn, secc)
 start_btn = "Start"
 
 
-layout = [  [sg.Text('Pomodoro Timer', font='Any 15')],
-            [sg.Text(text=time_format, size=(10,1), font='Any 45', key='-OUT-')],
-            [ sg.Button('Start', image_filename="start.png", font='Any 20', disabled=False, key='btn1'), 
-              sg.Button('Pause', image_filename="pause.png", font='Any 20', key='btn2', disabled=True), 
-              sg.Button('Reset', image_filename="reset.png", font='Any 20', disabled=True, key='btn3')]]
+layout = [  [ sg.Text(
+                text='Pomodoro Timer',
+                font='Any 15',
+                justification='center')],
+            [ sg.Text(
+                text=time_format,
+                size=(6,1),
+                font='Any 45',
+                key='-OUT-',
+                justification='center')],
+            [ sg.Button(
+                button_text='Start',
+                font='Any 20',
+                disabled=False,
+                key='btn1',
+                size=(6,1)), 
+              sg.Button(
+                button_text='Reset',
+                font='Any 20',
+                disabled=True,
+                key='btn2',
+                size=(6,1))]]
 
 window = sg.Window('Pomodoro Timer', layout)
 
@@ -41,31 +58,29 @@ while True:
   event, values = window.read(timeout=1000)
   if event == sg.WIN_CLOSED or event == 'Cancel':
     break
-  if event == 'Start' or event == 'btn1':
-    window['btn1'].update(disabled=True)
-    window['btn3'].update(disabled=False)
-    if time_format == '00:00':
+  if event == 'btn1':
+    if running:
       running = False
+      window['btn1'].update('Start')
     else:
       running = True
-  if running:
+      window['btn1'].update('Pause')
+    window['btn2'].update(disabled=False)
+    if time_format == '00:00':
+      running = False
+  if running == True:
     minn, secc = divmod(sec, 60)
     time_format = '{:02d}:{:02d}'.format(minn, secc)
     window['-OUT-'].update(time_format)
     window['btn2'].update(disabled=False)
     sec -= 1
-  if event == 'Pause' or event == 'btn2':
-    running = False
-    window['btn1'].update(disabled=False)
-  if event == 'Reset' or event == 'btn3':
+  if event == 'btn2':
     running = False
     sec = pomodoro * 60
     minn, secc = divmod(sec, 60)
     time_format = '{:02d}:{:02d}'.format(minn, secc)
     window['-OUT-'].update(time_format)
-    window['btn1'].update(disabled=False)
-    window['btn3'].update(disabled=True)
-  if not running:
+    window['btn1'].update('Start')
     window['btn2'].update(disabled=True)
   if time_format == '00:01':
     os.system('mpg123 alert-bell.mp3')
