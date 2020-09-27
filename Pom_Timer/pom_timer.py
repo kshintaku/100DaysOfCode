@@ -8,6 +8,13 @@ Requirements:
 Needs 'mpg123' to be installed in os
 Ex. 'brew install mpg123'
 
+Build Instructions:
+To run:
+python pom_timer.py
+
+To create installer:
+pyinstaller --noconsole pom_timer.py
+
 TODO:
 base on internal time to prevent drift and other timing issues
 resolve issue of timer ending and skipping 1 second while playing sound
@@ -42,10 +49,18 @@ layout = [
     ],
     [
         sg.Button(
-            button_text="Start", font="Any 20", disabled=False, key="btn1", size=(6, 1)
+            button_text="Start",
+            font="Any 20",
+            disabled=False,
+            key="btn1",
+            size=(6, 1)
         ),
         sg.Button(
-            button_text="Reset", font="Any 20", disabled=True, key="btn2", size=(6, 1)
+            button_text="Reset",
+            font="Any 20",
+            disabled=True,
+            key="btn2",
+            size=(6, 1)
         ),
     ],
 ]
