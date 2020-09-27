@@ -1,6 +1,8 @@
-'''
+"""
 # 20 Valid Parentheses
-Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+Difficulty Easy
+Given a string s containing just the characters
+    '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 An input string is valid if:
 
@@ -34,7 +36,7 @@ Constraints:
 
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
-'''
+"""
 
 
 class Solution:
@@ -43,21 +45,21 @@ class Solution:
         if len(s) % 2 == 1:
             return False
         for x in s:
-            if x in ['(', '[', '{']:
+            if x in ["(", "[", "{"]:
                 my_stack.append(x)
-            elif x in [')', ']', '}'] and len(my_stack) > 0:
-                if x == ')':
-                    if my_stack[-1] == '(':
+            elif x in [")", "]", "}"] and len(my_stack) > 0:
+                if x == ")":
+                    if my_stack[-1] == "(":
                         my_stack.pop()
                     else:
                         return False
-                elif x == ']':
-                    if my_stack[-1] == '[':
+                elif x == "]":
+                    if my_stack[-1] == "[":
                         my_stack.pop()
                     else:
                         return False
-                elif x == '}':
-                    if my_stack[-1] == '{':
+                elif x == "}":
+                    if my_stack[-1] == "{":
                         my_stack.pop()
                     else:
                         return False
@@ -69,8 +71,8 @@ class Solution:
 
 
 sol = Solution()
-print(sol.isValid('()'))
-print(sol.isValid('()[]{}'))
-print(sol.isValid('(]'))
-print(sol.isValid('([)]'))
-print(sol.isValid('{[]}'))
+print(sol.isValid("()"))
+print(sol.isValid("()[]{}"))
+print(sol.isValid("(]"))
+print(sol.isValid("([)]"))
+print(sol.isValid("{[]}"))
