@@ -12,9 +12,8 @@ Build Instructions:
 To run:
 python pom_timer.py
 
-To create installer (MAC ONLY):
-py2applet --make-setup pom_timer.py
-python setup.py py2app
+To create installer:
+pyinstaller --noconsole pom_timer.py
 
 TODO:
 base on internal time to prevent drift and other timing issues
